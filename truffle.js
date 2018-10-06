@@ -1,5 +1,6 @@
 var HDWalletProvider = require("truffle-hdwallet-provider");
 var mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
+var networkEndpoint = "http://eth5kzzgs-dns-reg1.westus.cloudapp.azure.com:8540";
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -9,15 +10,15 @@ module.exports = {
     reporter: "mocha-junit-reporter",
     reporterOptions: {
       mochaFile: 'TEST-truffle.xml'
-    },
-    networks: {
-      azure: {
-      provider: function () {
-        return new HDWalletProvider(mnemonic, "http://eth5kzzgs-dns-reg1.westus.cloudapp.azure.com:8540", 0)
-      },
-      gasPrice : 0,
-      network_id: "*"
-      }
     }
-  }
+  },
+  networks: {
+		azure: {
+			provider: function () {
+			    return new HDWalletProvider(mnemonic, networkEndpoint, 0)
+		},
+		gasPrice : 0,
+		network_id: "*"
+		}
+	}
 };
